@@ -1,0 +1,28 @@
+*.iml
+.gradle
+/local.properties
+/.idea/caches
+/.idea/libraries
+/.idea/modules.xml
+/.idea/workspace.xml
+/.idea/navEditor.xml
+/.idea/assetWizardSettings.xml
+.DS_Store
+/build
+/captures
+.externalNativeBuild
+.cxx
+local.properties
+.kotlin
+
+# 署名鍵・秘密情報（公開リポジトリに入れない）
+*.jks
+*.keystore
+*.p12
+keystore.properties
+play-service-account*.json
+
+# ビルド成果物
+/app/release/
+*.aab
+*.apk

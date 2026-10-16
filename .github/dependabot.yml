@@ -1,0 +1,20 @@
+# 依存ライブラリと Actions の更新 PR を週 1 回まとめて作る（CI が通れば取り込むだけ）
+version: 2
+updates:
+  - package-ecosystem: gradle
+    directory: /
+    schedule: { interval: weekly }
+    groups:
+      gradle: { patterns: ['*'] }
+
+  - package-ecosystem: cargo
+    directory: /desktop/mwc-bridge
+    schedule: { interval: weekly }
+    groups:
+      cargo: { patterns: ['*'] }
+
+  - package-ecosystem: github-actions
+    directory: /
+    schedule: { interval: weekly }
+    groups:
+      actions: { patterns: ['*'] }

@@ -1,0 +1,17 @@
+# Add project specific R8 rules here.
+# AGP will combine all keep rule files in src/main/keepRules to pass to R8
+#
+# For more details, see
+#   https://d.android.com/r/tools/r8/keep-rules
+
+# If your project uses WebView with JS, uncomment the following
+# and specify the fully qualified class name to the JavaScript interface
+# class:
+#-keepclassmembers class fqcn.of.javascript.interface.for.webview {
+#   public *;
+#}
+# R8 が Kotlin 標準ライブラリのクラスを別パッケージへ移動 (repackage) すると、
+# package-private な親クラスにアクセスできず Android 9 以前で起動時に IllegalAccessError になる。
+#   例: kotlin.collections.CollectionsKt__MutableCollectionsJVMKt -> tg (親 CollectionsKt__IterablesKt は kotlin.collections に残る)
+# kotlin.* のクラスはパッケージを移動させない（難読化・最適化は引き続き有効）。
+-keeppackagenames kotlin.**
