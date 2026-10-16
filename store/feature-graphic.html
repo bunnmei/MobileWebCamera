@@ -1,0 +1,75 @@
+<!doctype html>
+<!--
+  Google Play のフィーチャーグラフィック（1024×500）。store/render.sh で PNG にする。
+  言語は URL の末尾で切り替える：feature-graphic.html#ja / #en
+-->
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap">
+  <style>
+    html, body { margin: 0; }
+    body {
+      width: 1024px;
+      height: 500px;
+      overflow: hidden;
+      background: #f0f4f9;
+      color: #1f1f1f;
+      font-family: "Noto Sans JP", sans-serif;
+      display: flex;
+      align-items: center;
+      gap: 40px;
+      padding: 0 64px 0 80px;
+      box-sizing: border-box;
+    }
+    .text { flex: 1; }
+    .icon { width: 96px; height: 96px; border-radius: 50%; display: block; margin-bottom: 24px; }
+    h1 { margin: 0 0 12px; font-size: 46px; font-weight: 700; line-height: 1.15; letter-spacing: -0.01em; }
+    p { margin: 0; font-size: 28px; font-weight: 500; line-height: 1.5; color: #444746; }
+    svg { flex: none; width: 420px; height: 340px; }
+    [data-lang] { display: none; }
+    html[lang="ja"] [data-lang="ja"],
+    html[lang="en"] [data-lang="en"] { display: block; }
+  </style>
+  <script>
+    document.documentElement.lang = location.hash === "#en" ? "en" : "ja";
+  </script>
+</head>
+<body>
+  <div class="text">
+    <img class="icon" src="../docs/img/icon.webp" alt="">
+    <h1>MobileWebCamera</h1>
+    <p data-lang="ja">スマホのカメラを、<br>PC の Web カメラに。</p>
+    <p data-lang="en">Use your phone camera<br>as a PC webcam.</p>
+  </div>
+
+  <!-- スマホ → USB / Wi-Fi → PC のモニター -->
+  <svg viewBox="0 0 420 340" aria-hidden="true">
+    <defs>
+      <clipPath id="screen"><rect x="70" y="30" width="330" height="190" rx="6"/></clipPath>
+      <clipPath id="phone-screen"><rect x="18" y="138" width="92" height="180" rx="12"/></clipPath>
+      <g id="scene">
+        <rect width="330" height="190" fill="#d3e3fd"/>
+        <circle cx="250" cy="58" r="26" fill="#f2c94c"/>
+        <path d="M0 150 Q 80 95 160 135 T 330 120 V190 H0Z" fill="#fd6a49"/>
+        <path d="M0 170 Q 110 140 210 165 T 330 160 V190 H0Z" fill="#20395c"/>
+      </g>
+    </defs>
+
+    <!-- モニター -->
+    <rect x="58" y="18" width="354" height="214" rx="16" fill="#1f1f1f"/>
+    <g clip-path="url(#screen)"><use href="#scene" x="70" y="30"/></g>
+    <rect x="215" y="232" width="60" height="44" fill="#444746"/>
+    <rect x="175" y="274" width="140" height="14" rx="7" fill="#444746"/>
+
+    <!-- ケーブル -->
+    <path d="M64 330 C 120 340, 190 320, 225 288" fill="none" stroke="#5f6368" stroke-width="5" stroke-linecap="round" stroke-dasharray="2 12"/>
+
+    <!-- スマホ -->
+    <rect x="8" y="126" width="112" height="204" rx="20" fill="#000"/>
+    <g clip-path="url(#phone-screen)">
+      <use href="#scene" transform="translate(-159 138) scale(0.95)"/>
+    </g>
+  </svg>
+</body>
+</html>

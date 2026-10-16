@@ -1,0 +1,14 @@
+{
+  "ja": [
+    { "img": "raw/01.png", "title": "スマホが PC の Web カメラに", "sub": "USB か Wi-Fi でつなぐだけ" },
+    { "img": "raw/02.png", "title": "OBS でそのまま受信", "sub": "表示された URL を入れるだけ。PC にソフトは不要" },
+    { "img": "raw/03.png", "title": "レンズもズームも自由自在", "sub": "超広角・望遠を切り替え" },
+    { "img": "raw/04.png", "title": "ピントも露出も手動で", "sub": "マニュアルフォーカス・ISO・シャッタースピード" }
+  ],
+  "en": [
+    { "img": "raw/01.png", "title": "Your phone, now a PC webcam", "sub": "Just connect by USB or Wi-Fi" },
+    { "img": "raw/02.png", "title": "Receive it right in OBS", "sub": "Paste the URL. Nothing to install on the PC" },
+    { "img": "raw/03.png", "title": "Every lens, any zoom", "sub": "Switch between ultra-wide and telephoto" },
+    { "img": "raw/04.png", "title": "Full manual control", "sub": "Manual focus, ISO and shutter speed" }
+  ]
+}
