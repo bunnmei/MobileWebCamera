@@ -7,7 +7,8 @@
     <string name="tab_color">色</string>
     <string name="tab_image">画質</string>
     <string name="tab_advanced">詳細</string>
-    <string name="tab_info">情報</string>
+    <string name="tab_info">カメラ情報</string>
+    <string name="tab_about">情報</string>
     <string name="camera_preparing">カメラを準備中…</string>
     <string name="stream_start">配信開始</string>
     <string name="stream_stop">配信停止</string>
@@ -168,4 +169,13 @@
     <string name="test_pattern_solid">単色</string>
     <string name="test_pattern_color_bars">カラーバー</string>
     <string name="test_pattern_color_bars_fade">カラーバー(グレー)</string>
+    <string name="menu_open">設定を開く</string>
+    <string name="menu_close">設定を閉じる</string>
+    <string name="about_version">バージョン %1$s</string>
+    <string name="about_source">ソースコード</string>
+    <string name="about_app_license">このアプリのライセンス</string>
+    <string name="about_oss">オープンソースライセンス</string>
+    <string name="about_oss_hint">このアプリは以下のオープンソースソフトウェアを使用しています。</string>
+    <string name="about_show_license">全文を表示</string>
+    <string name="about_hide_license">全文を閉じる</string>
 </resources>

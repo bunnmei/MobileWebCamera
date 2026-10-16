@@ -7,7 +7,8 @@
     <string name="tab_color">Màu</string>
     <string name="tab_image">Hình ảnh</string>
     <string name="tab_advanced">Nâng cao</string>
-    <string name="tab_info">Thông tin</string>
+    <string name="tab_info">Thông tin máy ảnh</string>
+    <string name="tab_about">Giới thiệu</string>
     <string name="camera_preparing">Đang chuẩn bị máy ảnh…</string>
     <string name="stream_start">Bắt đầu phát</string>
     <string name="stream_stop">Dừng phát</string>
@@ -168,4 +169,13 @@
     <string name="test_pattern_solid">Màu đơn</string>
     <string name="test_pattern_color_bars">Sọc màu</string>
     <string name="test_pattern_color_bars_fade">Sọc màu (chuyển dần sang xám)</string>
+    <string name="menu_open">Mở cài đặt</string>
+    <string name="menu_close">Đóng cài đặt</string>
+    <string name="about_version">Phiên bản %1$s</string>
+    <string name="about_source">Mã nguồn</string>
+    <string name="about_app_license">Giấy phép của ứng dụng này</string>
+    <string name="about_oss">Giấy phép nguồn mở</string>
+    <string name="about_oss_hint">Ứng dụng này sử dụng các phần mềm nguồn mở sau.</string>
+    <string name="about_show_license">Hiện toàn văn</string>
+    <string name="about_hide_license">Ẩn toàn văn</string>
 </resources>

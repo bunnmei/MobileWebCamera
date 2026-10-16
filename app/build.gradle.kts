@@ -18,7 +18,7 @@ android {
         // リリースのたびに 1 以上増やす（Play は同じ・小さい番号を受け付けない）
         versionCode = 3
         // CI (GitHub Actions) ではタグ名 (v1.2.0 → 1.2.0) を使う
-        versionName = System.getenv("VERSION_NAME") ?: "1.0"
+        versionName = System.getenv("VERSION_NAME") ?: "1.1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -37,6 +37,10 @@ android {
     }
 
     buildTypes {
+        debug {
+            // Play からインストールした版（署名が違う）と並べて入れられるよう別アプリにする
+            applicationIdSuffix = ".debug"
+        }
         release {
             signingConfigs.findByName("release")?.let { signingConfig = it }
             optimization {

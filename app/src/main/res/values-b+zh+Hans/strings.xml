@@ -7,7 +7,8 @@
     <string name="tab_color">色彩</string>
     <string name="tab_image">画质</string>
     <string name="tab_advanced">高级</string>
-    <string name="tab_info">信息</string>
+    <string name="tab_info">相机信息</string>
+    <string name="tab_about">关于</string>
     <string name="camera_preparing">正在准备相机…</string>
     <string name="stream_start">开始推流</string>
     <string name="stream_stop">停止推流</string>
@@ -168,4 +169,13 @@
     <string name="test_pattern_solid">纯色</string>
     <string name="test_pattern_color_bars">彩条</string>
     <string name="test_pattern_color_bars_fade">彩条（渐变为灰）</string>
+    <string name="menu_open">打开设置</string>
+    <string name="menu_close">关闭设置</string>
+    <string name="about_version">版本 %1$s</string>
+    <string name="about_source">源代码</string>
+    <string name="about_app_license">本应用的许可证</string>
+    <string name="about_oss">开源许可证</string>
+    <string name="about_oss_hint">本应用使用了以下开源软件。</string>
+    <string name="about_show_license">显示全文</string>
+    <string name="about_hide_license">收起全文</string>
 </resources>

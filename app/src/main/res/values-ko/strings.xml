@@ -7,7 +7,8 @@
     <string name="tab_color">색상</string>
     <string name="tab_image">화질</string>
     <string name="tab_advanced">고급</string>
-    <string name="tab_info">정보</string>
+    <string name="tab_info">카메라 정보</string>
+    <string name="tab_about">정보</string>
     <string name="camera_preparing">카메라 준비 중…</string>
     <string name="stream_start">송출 시작</string>
     <string name="stream_stop">송출 중지</string>
@@ -168,4 +169,13 @@
     <string name="test_pattern_solid">단색</string>
     <string name="test_pattern_color_bars">컬러 바</string>
     <string name="test_pattern_color_bars_fade">컬러 바 (회색 페이드)</string>
+    <string name="menu_open">설정 열기</string>
+    <string name="menu_close">설정 닫기</string>
+    <string name="about_version">버전 %1$s</string>
+    <string name="about_source">소스 코드</string>
+    <string name="about_app_license">이 앱의 라이선스</string>
+    <string name="about_oss">오픈소스 라이선스</string>
+    <string name="about_oss_hint">이 앱은 다음 오픈소스 소프트웨어를 사용합니다.</string>
+    <string name="about_show_license">전문 보기</string>
+    <string name="about_hide_license">전문 닫기</string>
 </resources>

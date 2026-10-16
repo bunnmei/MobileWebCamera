@@ -81,6 +81,7 @@ private enum class PanelTab(@StringRes val title: Int) {
     IMAGE(R.string.tab_image),
     ADVANCED(R.string.tab_advanced),
     INFO(R.string.tab_info),
+    ABOUT(R.string.tab_about),
 }
 
 @Composable
@@ -105,6 +106,7 @@ fun ControlPanel(modifier: Modifier, state: CameraUiState, stream: StreamStatus,
         ) {
             when {
                 current == PanelTab.STREAM -> StreamTab(state, stream, vm)
+                current == PanelTab.ABOUT -> AboutTab()
                 caps == null -> Hint(stringResource(R.string.camera_preparing))
                 else -> {
                     val cam = vm.camera
@@ -115,7 +117,7 @@ fun ControlPanel(modifier: Modifier, state: CameraUiState, stream: StreamStatus,
                         PanelTab.COLOR -> ColorTab(state, caps, cam)
                         PanelTab.IMAGE -> EnumGroup(state, caps, cam, ControlGroup.IMAGE)
                         PanelTab.ADVANCED -> AdvancedTab(state, caps, cam)
-                        PanelTab.STREAM, PanelTab.INFO -> Unit
+                        PanelTab.STREAM, PanelTab.INFO, PanelTab.ABOUT -> Unit
                     }
                 }
             }
@@ -198,11 +200,16 @@ private fun StreamTab(state: CameraUiState, stream: StreamStatus, vm: CameraView
         Row(Modifier.fillMaxWidth().padding(vertical = 4.dp), verticalAlignment = Alignment.CenterVertically) {
             AssistChip(onClick = {}, label = { Text(addr.kind.label) }, modifier = Modifier.width(80.dp))
             Spacer(Modifier.width(8.dp))
-            SelectionContainer {
-                Text(
+            SelectionContainer(Modifier.weight(1f)) {
+                // 縦画面のパネルは幅が狭いので、1 行に収まるよう文字を縮める
+                val color = LocalContentColor.current
+                BasicText(
                     "tcp://${addr.ip}:${stream.tsPort}",
-                    fontFamily = FontFamily.Monospace,
-                    style = MaterialTheme.typography.titleMedium,
+                    maxLines = 1,
+                    softWrap = false,
+                    color = { color },
+                    style = MaterialTheme.typography.titleMedium.copy(fontFamily = FontFamily.Monospace),
+                    autoSize = TextAutoSize.StepBased(minFontSize = 10.sp, maxFontSize = MaterialTheme.typography.titleMedium.fontSize),
                 )
             }
         }

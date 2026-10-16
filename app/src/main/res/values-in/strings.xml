@@ -7,7 +7,8 @@
     <string name="tab_color">Warna</string>
     <string name="tab_image">Gambar</string>
     <string name="tab_advanced">Lanjutan</string>
-    <string name="tab_info">Info</string>
+    <string name="tab_info">Info kamera</string>
+    <string name="tab_about">Tentang</string>
     <string name="camera_preparing">Menyiapkan kamera…</string>
     <string name="stream_start">Mulai siaran</string>
     <string name="stream_stop">Hentikan siaran</string>
@@ -168,4 +169,13 @@
     <string name="test_pattern_solid">Warna solid</string>
     <string name="test_pattern_color_bars">Bar warna</string>
     <string name="test_pattern_color_bars_fade">Bar warna (memudar ke abu-abu)</string>
+    <string name="menu_open">Buka setelan</string>
+    <string name="menu_close">Tutup setelan</string>
+    <string name="about_version">Versi %1$s</string>
+    <string name="about_source">Kode sumber</string>
+    <string name="about_app_license">Lisensi aplikasi ini</string>
+    <string name="about_oss">Lisensi open source</string>
+    <string name="about_oss_hint">Aplikasi ini menggunakan perangkat lunak open source berikut.</string>
+    <string name="about_show_license">Tampilkan teks lengkap</string>
+    <string name="about_hide_license">Sembunyikan teks lengkap</string>
 </resources>

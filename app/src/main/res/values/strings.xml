@@ -8,7 +8,8 @@
     <string name="tab_color">Color</string>
     <string name="tab_image">Image</string>
     <string name="tab_advanced">Advanced</string>
-    <string name="tab_info">Info</string>
+    <string name="tab_info">Camera info</string>
+    <string name="tab_about">About</string>
     <string name="camera_preparing">Preparing camera…</string>
     <string name="stream_start">Start streaming</string>
     <string name="stream_stop">Stop streaming</string>
@@ -169,4 +170,13 @@
     <string name="test_pattern_solid">Solid color</string>
     <string name="test_pattern_color_bars">Color bars</string>
     <string name="test_pattern_color_bars_fade">Color bars (fade to gray)</string>
+    <string name="menu_open">Open settings</string>
+    <string name="menu_close">Close settings</string>
+    <string name="about_version">Version %1$s</string>
+    <string name="about_source">Source code</string>
+    <string name="about_app_license">License of this app</string>
+    <string name="about_oss">Open source licenses</string>
+    <string name="about_oss_hint">This app uses the following open source software.</string>
+    <string name="about_show_license">Show full text</string>
+    <string name="about_hide_license">Hide full text</string>
 </resources>

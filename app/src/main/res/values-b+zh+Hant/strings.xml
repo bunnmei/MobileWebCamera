@@ -7,7 +7,8 @@
     <string name="tab_color">色彩</string>
     <string name="tab_image">畫質</string>
     <string name="tab_advanced">進階</string>
-    <string name="tab_info">資訊</string>
+    <string name="tab_info">相機資訊</string>
+    <string name="tab_about">關於</string>
     <string name="camera_preparing">正在準備相機…</string>
     <string name="stream_start">開始串流</string>
     <string name="stream_stop">停止串流</string>
@@ -168,4 +169,13 @@
     <string name="test_pattern_solid">單色</string>
     <string name="test_pattern_color_bars">彩條</string>
     <string name="test_pattern_color_bars_fade">彩條（漸變為灰）</string>
+    <string name="menu_open">開啟設定</string>
+    <string name="menu_close">關閉設定</string>
+    <string name="about_version">版本 %1$s</string>
+    <string name="about_source">原始碼</string>
+    <string name="about_app_license">本應用程式的授權</string>
+    <string name="about_oss">開放原始碼授權</string>
+    <string name="about_oss_hint">本應用程式使用了以下開放原始碼軟體。</string>
+    <string name="about_show_license">顯示全文</string>
+    <string name="about_hide_license">收合全文</string>
 </resources>
