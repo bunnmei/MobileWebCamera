@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MobileWebCamera</title>
+  <link rel="icon" href="img/icon.webp">
+  <script>
+    // 前回選んだ言語 → ブラウザの言語 の順で振り分ける
+    (() => {
+      let lang = null;
+      try { lang = localStorage.getItem("lang"); } catch (_) {}
+      if (lang !== "ja" && lang !== "en") {
+        lang = (navigator.languages || [navigator.language || ""]).some((l) => /^ja\b/i.test(l)) ? "ja" : "en";
+      }
+      location.replace(lang + "/" + location.hash);
+    })();
+  </script>
+  <link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+  <main>
+    <p><a href="en/">English</a> · <a href="ja/">日本語</a></p>
+  </main>
+</body>
+</html>

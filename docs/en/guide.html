@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Guide — MobileWebCamera</title>
+  <meta name="description" content="How to use MobileWebCamera: connecting to your PC, receiving in OBS, what each tab does, and troubleshooting.">
+  <link rel="icon" href="../img/icon.webp">
+  <link rel="alternate" hreflang="ja" href="../ja/guide.html">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap">
+  <link rel="stylesheet" href="../assets/site.css">
+  <script src="../assets/site.js" defer></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="site-header__inner">
+      <a class="brand" href="./"><img src="../img/icon.webp" alt="">MobileWebCamera</a>
+      <nav class="nav">
+        <a href="./">Home</a>
+        <a href="guide.html" aria-current="page">Guide</a>
+        <a href="privacy.html">Privacy</a>
+      </nav>
+      <a class="lang-switch" href="../ja/guide.html" hreflang="ja" lang="ja" data-set-lang="ja"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zm6.93 6h-2.95a15.65 15.65 0 0 0-1.38-3.56A8.03 8.03 0 0 1 18.92 8zM12 4.04c.83 1.2 1.48 2.53 1.91 3.96h-3.82c.43-1.43 1.08-2.76 1.91-3.96zM4.26 14C4.1 13.36 4 12.69 4 12s.1-1.36.26-2h3.38c-.08.66-.14 1.32-.14 2s.06 1.34.14 2H4.26zm.82 2h2.95c.32 1.25.78 2.45 1.38 3.56A7.99 7.99 0 0 1 5.08 16zm2.95-8H5.08a7.99 7.99 0 0 1 4.33-3.56A15.65 15.65 0 0 0 8.03 8zM12 19.96c-.83-1.2-1.48-2.53-1.91-3.96h3.82c-.43 1.43-1.08 2.76-1.91 3.96zM14.34 14H9.66c-.09-.66-.16-1.32-.16-2s.07-1.35.16-2h4.68c.09.65.16 1.32.16 2s-.07 1.34-.16 2zm.25 5.56c.6-1.11 1.06-2.31 1.38-3.56h2.95a8.03 8.03 0 0 1-4.33 3.56zM16.36 14c.08-.66.14-1.32.14-2s-.06-1.34-.14-2h3.38c.16.64.26 1.31.26 2s-.1 1.36-.26 2h-3.38z"/></svg>日本語</a>
+    </div>
+  </header>
+
+  <main>
+    <h1 class="page-title">Guide</h1>
+    <p class="page-meta">MobileWebCamera · Android 9 or later</p>
+
+    <div class="summary">
+      <p><strong>It takes three steps.</strong> Connect your phone and PC by USB or Wi-Fi → tap “Start streaming” in the app → paste the URL it shows into an OBS “Media Source”.</p>
+    </div>
+
+    <nav class="toc" aria-label="Contents">
+      <div class="toc__title">On this page</div>
+      <ol>
+        <li><a href="#connect">Connect your phone and PC</a></li>
+        <li><a href="#start">Start streaming</a></li>
+        <li><a href="#obs">Receive in OBS</a></li>
+        <li><a href="#other">Receive without OBS</a></li>
+        <li><a href="#tabs">What each tab does</a></li>
+        <li><a href="#trouble">Troubleshooting</a></li>
+      </ol>
+    </nav>
+
+    <h2 id="connect">1. Connect your phone and PC</h2>
+    <p>Put your phone and PC on the same network in one of these two ways.</p>
+
+    <h3>USB (recommended)</h3>
+    <p>The most stable option with the lowest latency. You don't need adb or any developer tools.</p>
+    <ol class="steps">
+      <li><strong>Connect the phone to the PC with a USB cable</strong>Use a cable that supports data, not a charge-only cable.</li>
+      <li><strong>Turn on USB tethering</strong>On the phone, open Settings → Network &amp; internet → Hotspot &amp; tethering → USB tethering. Menu names vary slightly by phone.</li>
+    </ol>
+
+    <h3>Wi-Fi</h3>
+    <p>Connect the phone and PC to <strong>the same Wi-Fi network (the same router)</strong>. No cable needed, but the video may stutter if the signal is weak.</p>
+
+    <div class="callout">
+      <span class="callout__title">Mobile data (4G / 5G) won't work</span>
+      <p>The app only shows USB tethering and Wi-Fi addresses, because those are the only ones your PC can reach.</p>
+    </div>
+
+    <h2 id="start">2. Start streaming</h2>
+    <ol class="steps">
+      <li><strong>Open the app and allow camera access</strong></li>
+      <li><strong>On the Stream tab, tap “Start streaming”</strong>On Android 17 and later you'll be asked to allow “local network access”. Allow it — your PC can't connect without it.</li>
+      <li><strong>Check the URL that appears</strong>You'll see a URL like <code>tcp://192.168.42.129:4747</code>, labeled <code>USB</code> or <code>Wi-Fi</code>. You'll use it in the next step.</li>
+    </ol>
+    <p>Streaming continues even if you leave the app. While the “streaming” notification is showing, the stream is live. To stop, go back to the app and tap “Stop streaming”.</p>
+
+    <h2 id="obs">3. Receive in OBS</h2>
+    <ol class="steps">
+      <li><strong>In OBS, click “+” under Sources and choose “Media Source”</strong></li>
+      <li><strong>Use these settings, then click “OK”</strong></li>
+    </ol>
+
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Setting</th><th>Value</th></tr></thead>
+        <tbody>
+          <tr><td>Local File</td><td>Off</td></tr>
+          <tr><td>Input</td><td>The URL shown in the app (e.g. <code>tcp://192.168.42.129:4747</code>)</td></tr>
+          <tr><td>Input Format</td><td><code>mpegts</code></td></tr>
+          <tr><td>Network Buffering</td><td><code>0</code> MB</td></tr>
+          <tr><td>FFmpeg Options</td><td><code>analyzeduration=500000</code></td></tr>
+          <tr><td>Use hardware decoding when available</td><td>On</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p><strong>FFmpeg Options</strong> is optional, but it cuts the time until video appears from about 5 seconds to about 1.5 seconds.</p>
+
+    <div class="callout">
+      <span class="callout__title">Using it in Zoom, Teams and other apps</span>
+      <p>Click “Start Virtual Camera” in OBS. The OBS output then shows up as a webcam you can pick in other apps.</p>
+    </div>
+
+    <h2 id="other">4. Receive without OBS</h2>
+    <p>You can also change <code>tcp://</code> to <code>http://</code>. In VLC, open Media → Open Network Stream and enter:</p>
+<pre><code>http://192.168.42.129:4747/</code></pre>
+    <p>Replace the IP address with the one shown in the app.</p>
+
+    <h2 id="tabs">5. What each tab does</h2>
+    <p>Open the settings from the menu button at the top right. The app only shows options your phone's camera supports, so what you see depends on the device.</p>
+
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Tab</th><th>What you can do</th></tr></thead>
+        <tbody>
+          <tr><td>Stream</td><td>Start/stop streaming, connection URLs, resolution, frame rate and bitrate (changeable while streaming), video orientation, request a keyframe</td></tr>
+          <tr><td>Lens</td><td>Switch cameras (including individual ultra-wide and telephoto lenses), zoom, torch and torch strength</td></tr>
+          <tr><td>Focus</td><td>AF mode (AF-C video, AF-S, macro, manual) and manual focus distance. Tap the preview to focus and meter there; long-press to cancel</td></tr>
+          <tr><td>Exposure</td><td>ISO, shutter speed, exposure compensation, AE lock, flicker reduction</td></tr>
+          <tr><td>Color</td><td>White balance, manual color temperature, AWB lock, effects, tone map</td></tr>
+          <tr><td>Image</td><td>Stabilization, noise reduction, edge enhancement, scene modes, bokeh, auto framing</td></tr>
+          <tr><td>Advanced</td><td>Face detection, corrections, test patterns, aperture, ND filter</td></tr>
+          <tr><td>Camera info</td><td>Detailed capabilities of the selected camera (for developers)</td></tr>
+          <tr><td>About</td><td>Version, source code, licenses</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Video orientation</h3>
+    <p>By default it's set to “Auto”, which keeps the video upright however you hold the phone. If you lay the phone flat, it keeps the last orientation. When the phone is on a stand, locking the orientation keeps things steady.</p>
+    <ul>
+      <li><strong>Portrait</strong>: streams a tall video (e.g. 1080×1920)</li>
+      <li><strong>Landscape (right side up) / (left side up)</strong>: with the screen facing you, the right or left edge of the phone is on top</li>
+    </ul>
+
+    <h3>“Multi” and “Physical” lenses</h3>
+    <p><strong>Multi</strong> is a camera that switches lenses automatically as you zoom. <strong>Physical</strong> uses one lens directly. On phones that can't output from a single physical lens, the app falls back to Multi automatically — pick the lens with the zoom level instead.</p>
+
+    <h2 id="trouble">6. Troubleshooting</h2>
+
+    <details>
+      <summary>Nothing shows up in OBS / can't connect</summary>
+      <ul>
+        <li>Make sure you've tapped “Start streaming” in the app.</li>
+        <li>Make sure the phone and PC are on the same network (USB tethering, or the same Wi-Fi).</li>
+        <li>Check that the OBS “Input” matches the URL the app shows <strong>right now</strong>. The IP address can change when you reconnect USB.</li>
+        <li>On Android 17 and later, allow “local network access”. If you denied it, change it in Settings → Apps → MobileWebCamera → Permissions.</li>
+        <li>A PC firewall, or office, school or public Wi-Fi, may block the connection. Use USB in that case.</li>
+      </ul>
+    </details>
+
+    <details>
+      <summary>Video takes a long time to appear / high latency</summary>
+      <ul>
+        <li>Set OBS “Network Buffering” to <code>0</code> MB.</li>
+        <li>Put <code>analyzeduration=500000</code> in “FFmpeg Options”.</li>
+        <li>USB has lower latency than Wi-Fi.</li>
+      </ul>
+    </details>
+
+    <details>
+      <summary>Video is glitchy or blocky</summary>
+      <ul>
+        <li>Tap “Request keyframe” on the Stream tab to resend a clean frame.</li>
+        <li>Lower the bitrate or resolution.</li>
+        <li>On Wi-Fi, move closer to the router or switch to USB.</li>
+      </ul>
+    </details>
+
+    <details>
+      <summary>Video is sideways or upside down</summary>
+      <p>On the Stream tab, set “Video orientation” to match how you hold the phone.</p>
+    </details>
+
+    <details>
+      <summary>“Cannot open camera” or “Camera disconnected”</summary>
+      <p>Another app may be using the camera. Close other camera apps and try again.</p>
+    </details>
+
+    <details>
+      <summary>The phone gets hot or the battery drains fast</summary>
+      <p>Long streams can make the phone warm. Try a lower resolution or frame rate, remove the case, or connect by USB so it charges while streaming.</p>
+    </details>
+
+    <p style="margin-top:24px">Still stuck? Let us know on <a href="https://github.com/bunnmei/MobileWebCamera/issues">GitHub Issues</a>.</p>
+  </main>
+
+  <footer class="site-footer">
+    <div class="site-footer__inner">
+      <span class="copyright">© 2026 bunnmei</span>
+      <a href="guide.html">Guide</a>
+      <a href="privacy.html">Privacy Policy</a>
+      <a href="https://github.com/bunnmei/MobileWebCamera">GitHub</a>
+    </div>
+  </footer>
+</body>
+</html>

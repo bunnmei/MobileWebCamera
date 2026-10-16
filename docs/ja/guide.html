@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>使い方 — MobileWebCamera</title>
+  <meta name="description" content="MobileWebCamera の使い方。PC とのつなぎ方、OBS での受信設定、各タブの説明、困ったときの対処法。">
+  <link rel="icon" href="../img/icon.webp">
+  <link rel="alternate" hreflang="en" href="../en/guide.html">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap">
+  <link rel="stylesheet" href="../assets/site.css">
+  <script src="../assets/site.js" defer></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="site-header__inner">
+      <a class="brand" href="./"><img src="../img/icon.webp" alt="">MobileWebCamera</a>
+      <nav class="nav">
+        <a href="./">ホーム</a>
+        <a href="guide.html" aria-current="page">使い方</a>
+        <a href="privacy.html">プライバシー</a>
+      </nav>
+      <a class="lang-switch" href="../en/guide.html" hreflang="en" lang="en" data-set-lang="en"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zm6.93 6h-2.95a15.65 15.65 0 0 0-1.38-3.56A8.03 8.03 0 0 1 18.92 8zM12 4.04c.83 1.2 1.48 2.53 1.91 3.96h-3.82c.43-1.43 1.08-2.76 1.91-3.96zM4.26 14C4.1 13.36 4 12.69 4 12s.1-1.36.26-2h3.38c-.08.66-.14 1.32-.14 2s.06 1.34.14 2H4.26zm.82 2h2.95c.32 1.25.78 2.45 1.38 3.56A7.99 7.99 0 0 1 5.08 16zm2.95-8H5.08a7.99 7.99 0 0 1 4.33-3.56A15.65 15.65 0 0 0 8.03 8zM12 19.96c-.83-1.2-1.48-2.53-1.91-3.96h3.82c-.43 1.43-1.08 2.76-1.91 3.96zM14.34 14H9.66c-.09-.66-.16-1.32-.16-2s.07-1.35.16-2h4.68c.09.65.16 1.32.16 2s-.07 1.34-.16 2zm.25 5.56c.6-1.11 1.06-2.31 1.38-3.56h2.95a8.03 8.03 0 0 1-4.33 3.56zM16.36 14c.08-.66.14-1.32.14-2s-.06-1.34-.14-2h3.38c.16.64.26 1.31.26 2s-.1 1.36-.26 2h-3.38z"/></svg>English</a>
+    </div>
+  </header>
+
+  <main>
+    <h1 class="page-title">使い方</h1>
+    <p class="page-meta">MobileWebCamera ／ Android 9 以降</p>
+
+    <div class="summary">
+      <p><strong>3 ステップで使えます。</strong>スマホと PC を USB か Wi-Fi でつなぐ → アプリで「配信開始」 → OBS の「メディアソース」に表示された URL を入れる。</p>
+    </div>
+
+    <nav class="toc" aria-label="目次">
+      <div class="toc__title">このページの内容</div>
+      <ol>
+        <li><a href="#connect">スマホと PC をつなぐ</a></li>
+        <li><a href="#start">配信を始める</a></li>
+        <li><a href="#obs">OBS で受信する</a></li>
+        <li><a href="#other">OBS 以外で受信する</a></li>
+        <li><a href="#tabs">各タブの説明</a></li>
+        <li><a href="#trouble">困ったときは</a></li>
+      </ol>
+    </nav>
+
+    <h2 id="connect">1. スマホと PC をつなぐ</h2>
+    <p>次のどちらかの方法で、スマホと PC を同じネットワークにつなぎます。</p>
+
+    <h3>USB でつなぐ（おすすめ）</h3>
+    <p>映像が途切れにくく、遅延も少ない方法です。adb などの開発者向けツールは要りません。</p>
+    <ol class="steps">
+      <li><strong>USB ケーブルでスマホと PC をつなぐ</strong>充電専用ではなく、データ通信ができるケーブルを使ってください。</li>
+      <li><strong>USB テザリングをオンにする</strong>スマホの「設定」→「ネットワークとインターネット」→「テザリング」→「USB テザリング」をオンにします。メニューの名前は機種によって少し違います。</li>
+    </ol>
+
+    <h3>Wi-Fi でつなぐ</h3>
+    <p>スマホと PC を<strong>同じ Wi-Fi（同じルーター）</strong>に接続します。ケーブルが要らない代わりに、電波の状態によっては映像が乱れることがあります。</p>
+
+    <div class="callout">
+      <span class="callout__title">モバイルデータ通信（4G / 5G）では使えません</span>
+      <p>PC から届く USB テザリングと Wi-Fi のアドレスだけをアプリに表示しています。</p>
+    </div>
+
+    <h2 id="start">2. 配信を始める</h2>
+    <ol class="steps">
+      <li><strong>アプリを開いて、カメラへのアクセスを許可する</strong></li>
+      <li><strong>「配信」タブで「配信開始」を押す</strong>Android 17 以降では「ローカルネットワークへのアクセス」の許可を求められます。PC からつなぐのに必要なので、許可してください。</li>
+      <li><strong>表示された URL を確認する</strong><code>tcp://192.168.42.129:4747</code> のような URL が、<code>USB</code> または <code>Wi-Fi</code> のラベル付きで表示されます。この URL を次の手順で使います。</li>
+    </ol>
+    <p>配信中はアプリを閉じても（バックグラウンドにしても）配信が続きます。通知欄に「配信中」と出ている間は配信が続いています。止めるときはアプリに戻って「配信停止」を押してください。</p>
+
+    <h2 id="obs">3. OBS で受信する</h2>
+    <ol class="steps">
+      <li><strong>OBS の「ソース」で「＋」→「メディアソース」を選ぶ</strong></li>
+      <li><strong>次のように設定して「OK」を押す</strong></li>
+    </ol>
+
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>項目</th><th>設定する値</th></tr></thead>
+        <tbody>
+          <tr><td>ローカルファイル</td><td>オフ</td></tr>
+          <tr><td>入力</td><td>アプリに表示された URL（例：<code>tcp://192.168.42.129:4747</code>）</td></tr>
+          <tr><td>入力フォーマット</td><td><code>mpegts</code></td></tr>
+          <tr><td>ネットワークバッファリング</td><td><code>0</code> MB</td></tr>
+          <tr><td>FFmpeg のオプション</td><td><code>analyzeduration=500000</code></td></tr>
+          <tr><td>可能な場合ハードウェアデコードを使用</td><td>オン</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p><strong>FFmpeg のオプション</strong>は入れなくても映りますが、入れると映るまでの待ち時間が約 5 秒から約 1.5 秒に短くなります。</p>
+
+    <div class="callout">
+      <span class="callout__title">Zoom や Teams などで使うには</span>
+      <p>OBS の「仮想カメラ開始」を押すと、OBS の画面を Web カメラとして他のアプリで選べるようになります。</p>
+    </div>
+
+    <h2 id="other">4. OBS 以外で受信する</h2>
+    <p>URL の <code>tcp://</code> を <code>http://</code> に変えても受信できます。VLC なら「メディア」→「ネットワークストリームを開く」に次のように入れます。</p>
+<pre><code>http://192.168.42.129:4747/</code></pre>
+    <p>IP アドレスの部分は、アプリに表示されたものに置き換えてください。</p>
+
+    <h2 id="tabs">5. 各タブの説明</h2>
+    <p>画面右上のメニューから設定を開けます。選択肢はその端末のカメラが対応しているものだけが表示されるので、機種によって出てくる項目が違います。</p>
+
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>タブ</th><th>できること</th></tr></thead>
+        <tbody>
+          <tr><td>配信</td><td>配信の開始・停止、接続 URL の表示、解像度・フレームレート・ビットレート（配信中も変更可）、映像の向き、キーフレーム要求</td></tr>
+          <tr><td>レンズ</td><td>カメラの切り替え（超広角・望遠などの個別レンズも含む）、ズーム、ライト（トーチ）とその明るさ</td></tr>
+          <tr><td>フォーカス</td><td>AF モード（動画向け AF-C、AF-S、マクロ、マニュアル）、マニュアル時のピント位置。プレビューをタップするとその位置にピントと明るさを合わせ、長押しで解除</td></tr>
+          <tr><td>露出</td><td>ISO、シャッタースピード、露出補正、AE ロック、フリッカー低減</td></tr>
+          <tr><td>色</td><td>ホワイトバランス、色温度の手動設定、AWB ロック、エフェクト、トーンマップ</td></tr>
+          <tr><td>画質</td><td>手ブレ補正、ノイズリダクション、エッジ強調、シーンモード、ボケ、オートフレーミング</td></tr>
+          <tr><td>詳細</td><td>顔検出、各種補正、テストパターン、絞り、ND フィルター</td></tr>
+          <tr><td>カメラ情報</td><td>選んでいるカメラの詳しい性能情報（開発者向け）</td></tr>
+          <tr><td>情報</td><td>バージョン、ソースコード、ライセンス</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>映像の向き</h3>
+    <p>最初は「自動」で、スマホの持ち方に合わせて映像がまっすぐになります。スマホを机に寝かせても、最後の向きのままになります。スタンドに固定するときなどは、向きを決めておくと安定します。</p>
+    <ul>
+      <li><strong>縦</strong>：縦長の映像（例：1080×1920）で配信</li>
+      <li><strong>横（右が上）・横（左が上）</strong>：画面を自分に向けたとき、スマホの右端・左端が上になる持ち方</li>
+    </ul>
+
+    <h3>「マルチ」と「物理」のレンズ</h3>
+    <p><strong>マルチ</strong>はズーム倍率に合わせて自動でレンズを切り替えるカメラです。<strong>物理</strong>は 1 つのレンズを直接使います。物理レンズ単体で映せない機種では、自動でマルチに切り替わります。その場合はズーム倍率でレンズを選んでください。</p>
+
+    <h2 id="trouble">6. 困ったときは</h2>
+
+    <details>
+      <summary>OBS に何も映らない・つながらない</summary>
+      <ul>
+        <li>アプリで「配信開始」を押しているか確認してください。</li>
+        <li>スマホと PC が同じネットワーク（USB テザリング、または同じ Wi-Fi）につながっているか確認してください。</li>
+        <li>OBS の「入力」が、アプリに<strong>今</strong>表示されている URL と同じか確認してください。USB をつなぎ直すと IP アドレスが変わることがあります。</li>
+        <li>Android 17 以降では「ローカルネットワークへのアクセス」を許可してください。拒否した場合は「設定」→「アプリ」→「MobileWebCamera」→「権限」から変えられます。</li>
+        <li>PC のファイアウォールや、会社・学校・公共の Wi-Fi の設定で通信が止められていることがあります。その場合は USB でつないでください。</li>
+      </ul>
+    </details>
+
+    <details>
+      <summary>映るまでに時間がかかる・遅延が大きい</summary>
+      <ul>
+        <li>OBS の「ネットワークバッファリング」を <code>0</code> MB にしてください。</li>
+        <li>「FFmpeg のオプション」に <code>analyzeduration=500000</code> を入れてください。</li>
+        <li>Wi-Fi よりも USB の方が遅延は少なくなります。</li>
+      </ul>
+    </details>
+
+    <details>
+      <summary>映像が乱れる・ブロック状のノイズが出る</summary>
+      <ul>
+        <li>「配信」タブの「キーフレーム要求」を押すと、きれいな画面から送り直します。</li>
+        <li>ビットレートや解像度を下げると安定します。</li>
+        <li>Wi-Fi の場合は、ルーターに近づくか USB に切り替えてください。</li>
+      </ul>
+    </details>
+
+    <details>
+      <summary>映像が横向き・逆さまになる</summary>
+      <p>「配信」タブの「映像の向き」で、スマホの持ち方に合った向きを選んでください。</p>
+    </details>
+
+    <details>
+      <summary>「カメラを開けません」「カメラが切断されました」と出る</summary>
+      <p>ほかのアプリがカメラを使っている可能性があります。カメラを使うほかのアプリを閉じてから、もう一度試してください。</p>
+    </details>
+
+    <details>
+      <summary>スマホが熱くなる・電池の減りが早い</summary>
+      <p>長時間の配信では端末が熱くなりやすくなります。解像度やフレームレートを下げる、スマホケースを外す、USB でつないで充電しながら使う、などを試してください。</p>
+    </details>
+
+    <p style="margin-top:24px">解決しないときは <a href="https://github.com/bunnmei/MobileWebCamera/issues">GitHub の Issues</a> で教えてください。</p>
+  </main>
+
+  <footer class="site-footer">
+    <div class="site-footer__inner">
+      <span class="copyright">© 2026 bunnmei</span>
+      <a href="guide.html">使い方</a>
+      <a href="privacy.html">プライバシーポリシー</a>
+      <a href="https://github.com/bunnmei/MobileWebCamera">GitHub</a>
+    </div>
+  </footer>
+</body>
+</html>
