@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
     <string name="tab_stream">Siaran</string>
     <string name="tab_lens">Lensa</string>
     <string name="tab_focus">Fokus</string>
@@ -12,11 +12,10 @@
     <string name="stream_start">Mulai siaran</string>
     <string name="stream_stop">Hentikan siaran</string>
     <string name="local_network_denied">Akses jaringan lokal belum diizinkan, sehingga PC tidak dapat terhubung. Izinkan melalui tombol Mulai siaran, atau di Setelan → Aplikasi → Izin.</string>
-    <string name="stream_clients">Koneksi  OBS (TS): %1$d   Rust bridge: %2$d   %3$s</string>
+    <string name="stream_clients">Koneksi  OBS (TS): %1$d   %2$s</string>
     <string name="section_addresses">Alamat koneksi (“Input” pada Sumber Media OBS)</string>
     <string name="no_network">Tidak ada jaringan yang dapat digunakan untuk terhubung.\nUSB: sambungkan kabel lalu aktifkan Setelan → Tethering → Tethering USB\nWi-Fi: sambungkan ke Wi-Fi / router yang sama dengan PC</string>
     <string name="obs_hint">OBS: Sumber Media → matikan “File lokal” → isi Input dengan URL di atas dan Format input dengan mpegts</string>
-    <string name="bridge_hint" tools:ignore="TypographyDashes">Jembatan Rust: mwc-bridge --host %1$s</string>
     <string name="resolution_title">Resolusi (dapat diubah saat siaran)</string>
     <string name="fps_title">Kecepatan frame (rentang target AE)</string>
     <string name="orientation_title">Orientasi video (cara memegang ponsel)</string>

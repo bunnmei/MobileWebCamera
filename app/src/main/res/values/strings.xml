@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
     <string name="app_name" translatable="false">MobileWebCamera</string>
     <string name="tab_stream">Stream</string>
     <string name="tab_lens">Lens</string>
@@ -13,11 +13,10 @@
     <string name="stream_start">Start streaming</string>
     <string name="stream_stop">Stop streaming</string>
     <string name="local_network_denied">Local network access is not allowed, so your PC cannot connect. Allow it with the Start streaming button, or in Settings → Apps → Permissions.</string>
-    <string name="stream_clients">Connections  OBS (TS): %1$d   Rust bridge: %2$d   %3$s</string>
+    <string name="stream_clients">Connections  OBS (TS): %1$d   %2$s</string>
     <string name="section_addresses">Connect to (OBS Media Source “Input”)</string>
     <string name="no_network">No network available for connection.\nUSB: connect the cable and turn on Settings → Tethering → USB tethering\nWi-Fi: connect to the same Wi-Fi / router as your PC</string>
     <string name="obs_hint">OBS: Media Source → turn off “Local File” → set Input to the URL above and Input Format to mpegts</string>
-    <string name="bridge_hint" tools:ignore="TypographyDashes">Rust bridge: mwc-bridge --host %1$s</string>
     <string name="resolution_title">Resolution (can be changed while streaming)</string>
     <string name="fps_title">Frame rate (AE target range)</string>
     <string name="orientation_title">Video orientation (how you hold the phone)</string>

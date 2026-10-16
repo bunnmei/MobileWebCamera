@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
     <string name="tab_stream">Phát</string>
     <string name="tab_lens">Ống kính</string>
     <string name="tab_focus">Lấy nét</string>
@@ -12,11 +12,10 @@
     <string name="stream_start">Bắt đầu phát</string>
     <string name="stream_stop">Dừng phát</string>
     <string name="local_network_denied">Chưa cho phép truy cập mạng cục bộ nên PC không thể kết nối. Hãy cho phép bằng nút Bắt đầu phát hoặc trong Cài đặt → Ứng dụng → Quyền.</string>
-    <string name="stream_clients">Kết nối  OBS (TS): %1$d   Rust bridge: %2$d   %3$s</string>
+    <string name="stream_clients">Kết nối  OBS (TS): %1$d   %2$s</string>
     <string name="section_addresses">Địa chỉ kết nối (“Đầu vào” của Nguồn đa phương tiện OBS)</string>
     <string name="no_network">Không có mạng nào để kết nối.\nUSB: cắm cáp rồi bật Cài đặt → Chia sẻ kết nối → Chia sẻ kết nối qua USB\nWi-Fi: kết nối cùng Wi-Fi / bộ định tuyến với PC</string>
     <string name="obs_hint">OBS: Nguồn đa phương tiện → tắt “Tệp cục bộ” → nhập URL ở trên vào Đầu vào và mpegts vào Định dạng đầu vào</string>
-    <string name="bridge_hint" tools:ignore="TypographyDashes">Cầu nối Rust: mwc-bridge --host %1$s</string>
     <string name="resolution_title">Độ phân giải (có thể đổi khi đang phát)</string>
     <string name="fps_title">Tốc độ khung hình (phạm vi mục tiêu AE)</string>
     <string name="orientation_title">Hướng video (cách cầm điện thoại)</string>

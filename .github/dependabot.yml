@@ -7,12 +7,6 @@ updates:
     groups:
       gradle: { patterns: ['*'] }
 
-  - package-ecosystem: cargo
-    directory: /desktop/mwc-bridge
-    schedule: { interval: weekly }
-    groups:
-      cargo: { patterns: ['*'] }
-
   - package-ecosystem: github-actions
     directory: /
     schedule: { interval: weekly }

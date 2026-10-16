@@ -170,7 +170,7 @@ private fun PreviewArea(modifier: Modifier, state: CameraUiState, stream: Stream
         ) {
             if (state.streaming) {
                 Text(
-                    "● LIVE  OBS:${stream.tsClients}  bridge:${stream.rawClients}",
+                    "● LIVE  OBS:${stream.tsClients}",
                     color = Color(0xFFFF5252), style = MaterialTheme.typography.labelLarge,
                 )
             }

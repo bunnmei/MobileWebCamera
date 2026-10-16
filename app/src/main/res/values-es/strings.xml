@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
     <string name="tab_stream">Emisión</string>
     <string name="tab_lens">Lente</string>
     <string name="tab_focus">Enfoque</string>
@@ -12,11 +12,10 @@
     <string name="stream_start">Iniciar emisión</string>
     <string name="stream_stop">Detener emisión</string>
     <string name="local_network_denied">No se ha permitido el acceso a la red local, así que el PC no puede conectarse. Permítelo con el botón Iniciar emisión o en Ajustes → Aplicaciones → Permisos.</string>
-    <string name="stream_clients">Conexiones  OBS (TS): %1$d   Rust bridge: %2$d   %3$s</string>
+    <string name="stream_clients">Conexiones  OBS (TS): %1$d   %2$s</string>
     <string name="section_addresses">Dirección de conexión (“Entrada” de la fuente multimedia de OBS)</string>
     <string name="no_network">No hay ninguna red disponible para conectarse.\nUSB: conecta el cable y activa Ajustes → Compartir conexión → Compartir conexión por USB\nWi-Fi: conéctate a la misma red Wi-Fi / router que el PC</string>
     <string name="obs_hint">OBS: Fuente multimedia → desactiva “Archivo local” → en Entrada pon la URL de arriba y en Formato de entrada, mpegts</string>
-    <string name="bridge_hint" tools:ignore="TypographyDashes">Puente Rust: mwc-bridge --host %1$s</string>
     <string name="resolution_title">Resolución (se puede cambiar durante la emisión)</string>
     <string name="fps_title">Velocidad de fotogramas (rango objetivo de AE)</string>
     <string name="orientation_title">Orientación del vídeo (cómo sujetas el teléfono)</string>

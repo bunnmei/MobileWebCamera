@@ -1,4 +1,4 @@
-# push / PR のたびに Android アプリと Rust ブリッジをビルド・検査する
+# push / PR のたびに Android アプリをビルド・検査する
 name: CI
 
 on:
@@ -51,24 +51,3 @@ jobs:
             app/build/test-results/
           retention-days: 14
 
-  bridge:
-    name: Rust bridge (fmt / clippy / test)
-    runs-on: ubuntu-latest
-    timeout-minutes: 30
-    defaults:
-      run:
-        working-directory: desktop/mwc-bridge
-    steps:
-      - uses: actions/checkout@v7
-
-      - uses: dtolnay/rust-toolchain@stable
-        with:
-          components: rustfmt, clippy
-
-      - uses: Swatinem/rust-cache@v2
-        with:
-          workspaces: desktop/mwc-bridge
-
-      - run: cargo fmt --check
-      - run: cargo clippy --all-targets --locked -- -D warnings
-      - run: cargo test --locked

@@ -89,7 +89,7 @@ class H264Encoder(
             if (caps.encoderCapabilities?.isBitrateModeSupported(MediaCodecInfo.EncoderCapabilities.BITRATE_MODE_CBR) == true) {
                 setInteger(MediaFormat.KEY_BITRATE_MODE, MediaCodecInfo.EncoderCapabilities.BITRATE_MODE_CBR)
             }
-            // デスクトップ側 (openh264) との互換性のため Baseline を優先。B フレームも出ないので低遅延。
+            // どのデコーダでも再生できるよう Baseline を優先。B フレームも出ないので低遅延。
             val baseline = caps.profileLevels.any {
                 it.profile == MediaCodecInfo.CodecProfileLevel.AVCProfileConstrainedBaseline
             }

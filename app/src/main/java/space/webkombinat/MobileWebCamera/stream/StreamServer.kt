@@ -2,7 +2,6 @@ package space.webkombinat.MobileWebCamera.stream
 
 import android.util.Log
 import java.io.BufferedOutputStream
-import java.io.DataOutputStream
 import java.io.IOException
 import java.io.OutputStream
 import java.net.InetSocketAddress
@@ -13,21 +12,12 @@ import java.util.concurrent.ArrayBlockingQueue
 import java.util.concurrent.CopyOnWriteArrayList
 import java.util.concurrent.TimeUnit
 
-enum class StreamProtocol {
-    /** MPEG-TS over TCP（HTTP GET にも応答）。OBS メディアソース / VLC 用 */
-    MPEG_TS,
-
-    /** 独自の軽量フレーミング。デスクトップ側 Rust ブリッジ (mwc-bridge) 用 */
-    RAW,
-}
-
 /**
- * 1ポートの TCP サーバ。クライアントごとに送信スレッドとキューを持ち、
+ * MPEG-TS over TCP（HTTP GET にも応答）の配信サーバ。OBS メディアソース / VLC 用。クライアントごとに送信スレッドとキューを持ち、
  * 回線が詰まったクライアントだけ次のキーフレームまでスキップする。
  */
 class StreamServer(
     val port: Int,
-    private val protocol: StreamProtocol,
     private val onKeyFrameNeeded: () -> Unit,
     private val onClientCountChanged: () -> Unit,
 ) {
@@ -61,7 +51,7 @@ class StreamServer(
                 }
             }
         }, "StreamServer-$port").apply { start() }
-        Log.i(TAG, "listening on $port ($protocol)")
+        Log.i(TAG, "listening on $port")
     }
 
     fun stop() {
@@ -101,28 +91,8 @@ class StreamServer(
                 socket.tcpNoDelay = true
                 socket.sendBufferSize = 512 * 1024
                 val out = BufferedOutputStream(socket.getOutputStream(), 256 * 1024)
-                val writer: (EncodedFrame) -> Unit = when (protocol) {
-                    StreamProtocol.MPEG_TS -> {
-                        handleOptionalHttp(out)
-                        val muxer = MpegTsMuxer()
-                        val fn: (EncodedFrame) -> Unit = { f -> out.write(muxer.mux(f)) }
-                        fn
-                    }
-
-                    StreamProtocol.RAW -> {
-                        val data = DataOutputStream(out)
-                        data.write(RAW_MAGIC)
-                        data.flush()
-                        val fn: (EncodedFrame) -> Unit = { f ->
-                            data.writeInt(f.data.size)
-                            data.writeByte(if (f.isKey) 1 else 0)
-                            data.write(RAW_RESERVED)
-                            data.writeLong(f.ptsUs)
-                            data.write(f.data)
-                        }
-                        fn
-                    }
-                }
+                handleOptionalHttp(out)
+                val muxer = MpegTsMuxer()
                 onKeyFrameNeeded()
                 while (!closed) {
                     val f = queue.poll(1, TimeUnit.SECONDS) ?: continue
@@ -130,7 +100,7 @@ class StreamServer(
                         if (!f.isKey) continue
                         needKey = false
                     }
-                    writer(f)
+                    out.write(muxer.mux(f))
                     if (queue.isEmpty()) out.flush()
                 }
             } catch (_: IOException) {
@@ -181,7 +151,5 @@ class StreamServer(
     companion object {
         private const val TAG = "StreamServer"
         private const val QUEUE_CAPACITY = 45
-        private val RAW_MAGIC = "MWC1".toByteArray(Charsets.US_ASCII)
-        private val RAW_RESERVED = ByteArray(3)
     }
 }

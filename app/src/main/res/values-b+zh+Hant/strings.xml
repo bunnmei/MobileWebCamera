@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
     <string name="tab_stream">串流</string>
     <string name="tab_lens">鏡頭</string>
     <string name="tab_focus">對焦</string>
@@ -12,11 +12,10 @@
     <string name="stream_start">開始串流</string>
     <string name="stream_stop">停止串流</string>
     <string name="local_network_denied">未允許「存取區域網路」，電腦無法連線。請點選「開始串流」按鈕授予權限，或前往 設定 → 應用程式 → 權限 中允許。</string>
-    <string name="stream_clients">連線數  OBS (TS)：%1$d   Rust bridge：%2$d   %3$s</string>
+    <string name="stream_clients">連線數  OBS (TS)：%1$d   %2$s</string>
     <string name="section_addresses">連線位址（OBS 媒體來源的「輸入」）</string>
     <string name="no_network">沒有可用於連線的網路。\nUSB：接上傳輸線後開啟 設定 → 網路共用 → USB 網路共用\nWi-Fi：連線到與電腦相同的 Wi-Fi / 路由器</string>
     <string name="obs_hint">OBS：媒體來源 → 取消勾選「本機檔案」→ 輸入填入上方的 URL，輸入格式填入 mpegts</string>
-    <string name="bridge_hint" tools:ignore="TypographyDashes">Rust 橋接：mwc-bridge --host %1$s</string>
     <string name="resolution_title">解析度（串流中也可變更）</string>
     <string name="fps_title">影格率（AE 目標範圍）</string>
     <string name="orientation_title">影像方向（手機的握持方式）</string>

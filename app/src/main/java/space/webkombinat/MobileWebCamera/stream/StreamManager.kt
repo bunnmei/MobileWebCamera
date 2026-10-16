@@ -13,9 +13,7 @@ import javax.inject.Singleton
 data class StreamStatus(
     val serversRunning: Boolean = false,
     val tsPort: Int = StreamManager.TS_PORT,
-    val rawPort: Int = StreamManager.RAW_PORT,
     val tsClients: Int = 0,
-    val rawClients: Int = 0,
     val encoderSize: String? = null,
     val addresses: List<LocalAddress> = emptyList(),
     val error: UiText? = null,
@@ -31,21 +29,18 @@ class StreamManager @Inject constructor() {
     @Volatile
     private var encoder: H264Encoder? = null
 
-    private val tsServer = StreamServer(TS_PORT, StreamProtocol.MPEG_TS, ::requestKeyFrame, ::updateClients)
-    private val rawServer = StreamServer(RAW_PORT, StreamProtocol.RAW, ::requestKeyFrame, ::updateClients)
+    private val tsServer = StreamServer(TS_PORT, ::requestKeyFrame, ::updateClients)
 
     @Synchronized
     fun startServers() {
         if (_status.value.serversRunning) return
         try {
             tsServer.start()
-            rawServer.start()
             _status.update {
                 it.copy(serversRunning = true, addresses = NetworkUtils.localAddresses(), error = null)
             }
         } catch (e: Exception) {
             tsServer.stop()
-            rawServer.stop()
             _status.update { it.copy(serversRunning = false, error = text(S.error_server_start, e.message ?: e.toString())) }
         }
     }
@@ -53,8 +48,7 @@ class StreamManager @Inject constructor() {
     @Synchronized
     fun stopServers() {
         tsServer.stop()
-        rawServer.stop()
-        _status.update { it.copy(serversRunning = false, tsClients = 0, rawClients = 0) }
+        _status.update { it.copy(serversRunning = false, tsClients = 0) }
     }
 
     /** 新しいエンコーダを作成して差し替える。古いエンコーダは戻り値として返すので、カメラセッションから外した後に release すること。 */
@@ -67,10 +61,7 @@ class StreamManager @Inject constructor() {
         bitrate: Int,
     ): Pair<H264Encoder, H264Encoder?> {
         val old = encoder
-        val enc = H264Encoder(inputWidth, inputHeight, rotation, fps, bitrate) { frame ->
-            tsServer.broadcast(frame)
-            rawServer.broadcast(frame)
-        }
+        val enc = H264Encoder(inputWidth, inputHeight, rotation, fps, bitrate, tsServer::broadcast)
         encoder = enc
         _status.update { it.copy(encoderSize = "${enc.width}x${enc.height}@$fps") }
         return enc to old
@@ -98,11 +89,10 @@ class StreamManager @Inject constructor() {
     }
 
     private fun updateClients() {
-        _status.update { it.copy(tsClients = tsServer.clientCount, rawClients = rawServer.clientCount) }
+        _status.update { it.copy(tsClients = tsServer.clientCount) }
     }
 
     companion object {
         const val TS_PORT = 4747
-        const val RAW_PORT = 4748
     }
 }

@@ -1,11 +1,12 @@
-# v* タグを push すると、署名済み AAB / APK と Rust ブリッジを作って GitHub Release に公開し、
+# v* タグを push すると、署名済み AAB / APK を作って GitHub Release に公開し、
 # Play Console の認証情報が登録されていれば Google Play にもアップロードする。
 #
-#   git tag v1.1.0 && git push origin v1.1.0
+#   1. app/build.gradle.kts の versionCode を 1 増やしてコミット・push
+#   2. git tag v1.1.0 && git push origin v1.1.0   （タグ名が versionName になる）
 #
 # 必要な Secrets: ANDROID_KEYSTORE_BASE64, ANDROID_KEYSTORE_PASSWORD, ANDROID_KEY_ALIAS, ANDROID_KEY_PASSWORD
 # 任意の Secrets:  PLAY_SERVICE_ACCOUNT_JSON（未登録なら Play へのアップロードは省略）
-# 任意の Variables: PLAY_TRACK（既定 internal）, VERSION_CODE_OFFSET（既定 10）
+# 任意の Variables: PLAY_TRACK（既定 internal）
 name: Release
 
 on:
@@ -47,13 +48,8 @@ jobs:
           echo "$KEYSTORE_BASE64" | base64 --decode > "$RUNNER_TEMP/upload-keystore.jks"
           echo "ANDROID_KEYSTORE_PATH=$RUNNER_TEMP/upload-keystore.jks" >> "$GITHUB_ENV"
 
-      - name: Decide version
-        env:
-          OFFSET: ${{ vars.VERSION_CODE_OFFSET || '10' }}
-        run: |
-          # versionCode は Play で毎回増やす必要があるので、このワークフローの実行番号から決める
-          echo "VERSION_CODE=$(( ${{ github.run_number }} + OFFSET ))" >> "$GITHUB_ENV"
-          echo "VERSION_NAME=${GITHUB_REF_NAME#v}" >> "$GITHUB_ENV"
+      - name: Decide version name
+        run: echo "VERSION_NAME=${GITHUB_REF_NAME#v}" >> "$GITHUB_ENV"
 
       - name: Build signed bundle and APK
         env:
@@ -88,54 +84,17 @@ jobs:
           track: ${{ vars.PLAY_TRACK || 'internal' }}
           status: completed
 
-  bridge:
-    name: Rust bridge (${{ matrix.name }})
-    runs-on: ${{ matrix.os }}
-    timeout-minutes: 30
-    strategy:
-      fail-fast: false
-      matrix:
-        include:
-          - { name: linux-x86_64, os: ubuntu-latest, exe: mwc-bridge }
-          - { name: windows-x86_64, os: windows-latest, exe: mwc-bridge.exe }
-          - { name: macos-arm64, os: macos-latest, exe: mwc-bridge }
-    defaults:
-      run:
-        shell: bash
-        working-directory: desktop/mwc-bridge
-    steps:
-      - uses: actions/checkout@v7
-      - uses: dtolnay/rust-toolchain@stable
-      - uses: Swatinem/rust-cache@v2
-        with:
-          workspaces: desktop/mwc-bridge
-      - run: cargo build --release --locked
-      - name: Package
-        run: |
-          mkdir -p "$GITHUB_WORKSPACE/dist"
-          cd target/release
-          if [ "${{ runner.os }}" = "Windows" ]; then
-            7z a "$GITHUB_WORKSPACE/dist/mwc-bridge-${{ matrix.name }}.zip" "${{ matrix.exe }}"
-          else
-            tar czf "$GITHUB_WORKSPACE/dist/mwc-bridge-${{ matrix.name }}.tar.gz" "${{ matrix.exe }}"
-          fi
-      - uses: actions/upload-artifact@v7
-        with:
-          name: bridge-${{ matrix.name }}
-          path: dist/
-
   publish:
     name: GitHub Release
-    needs: [android, bridge]
-    if: ${{ !cancelled() && needs.android.result == 'success' }}
+    needs: android
     runs-on: ubuntu-latest
     permissions:
       contents: write
     steps:
       - uses: actions/download-artifact@v8
         with:
+          name: android-release
           path: dist
-          merge-multiple: true
       - uses: softprops/action-gh-release@v3
         with:
           files: dist/*

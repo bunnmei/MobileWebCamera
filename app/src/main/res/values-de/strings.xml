@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
     <string name="tab_stream">Streaming</string>
     <string name="tab_lens">Objektiv</string>
     <string name="tab_focus">Fokus</string>
@@ -12,11 +12,10 @@
     <string name="stream_start">Streaming starten</string>
     <string name="stream_stop">Streaming beenden</string>
     <string name="local_network_denied">Der Zugriff auf das lokale Netzwerk ist nicht erlaubt, daher kann sich der PC nicht verbinden. Erlaube ihn über die Schaltfläche „Streaming starten“ oder unter Einstellungen → Apps → Berechtigungen.</string>
-    <string name="stream_clients">Verbindungen  OBS (TS): %1$d   Rust bridge: %2$d   %3$s</string>
+    <string name="stream_clients">Verbindungen  OBS (TS): %1$d   %2$s</string>
     <string name="section_addresses">Verbindungsadresse („Eingabe“ der OBS-Medienquelle)</string>
     <string name="no_network">Kein Netzwerk für eine Verbindung verfügbar.\nUSB: Kabel anschließen und Einstellungen → Tethering → USB-Tethering aktivieren\nWLAN: mit demselben WLAN / Router wie der PC verbinden</string>
     <string name="obs_hint">OBS: Medienquelle → „Lokale Datei“ deaktivieren → bei Eingabe die URL oben und bei Eingabeformat mpegts eintragen</string>
-    <string name="bridge_hint" tools:ignore="TypographyDashes">Rust-Bridge: mwc-bridge --host %1$s</string>
     <string name="resolution_title">Auflösung (auch während des Streamings änderbar)</string>
     <string name="fps_title">Bildrate (AE-Zielbereich)</string>
     <string name="orientation_title">Videoausrichtung (wie du das Handy hältst)</string>

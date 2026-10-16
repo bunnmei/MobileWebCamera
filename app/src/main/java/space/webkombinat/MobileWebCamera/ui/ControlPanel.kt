@@ -176,7 +176,7 @@ private fun StreamTab(state: CameraUiState, stream: StreamStatus, vm: CameraView
     }
 
     if (state.streaming) {
-        Hint(stringResource(R.string.stream_clients, stream.tsClients, stream.rawClients, stream.encoderSize?.toString() ?: ""))
+        Hint(stringResource(R.string.stream_clients, stream.tsClients, stream.encoderSize ?: ""))
     }
 
     // テザリングの付け直しで IP が変わるため、表示中は定期的に取り直す
@@ -208,9 +208,6 @@ private fun StreamTab(state: CameraUiState, stream: StreamStatus, vm: CameraView
         }
     }
     Hint(stringResource(R.string.obs_hint))
-    if (stream.addresses.isNotEmpty()) {
-        Hint(stringResource(R.string.bridge_hint, stream.addresses.first().ip))
-    }
 
     val caps = state.caps ?: return
     ChoiceChips(

@@ -15,8 +15,9 @@ android {
         applicationId = "space.webkombinat.MobileWebCamera"
         minSdk = 28
         targetSdk = 37
-        // CI (GitHub Actions) ではタグ・実行番号から渡す。ローカルビルドは既定値
-        versionCode = System.getenv("VERSION_CODE")?.toInt() ?: 3
+        // リリースのたびに 1 以上増やす（Play は同じ・小さい番号を受け付けない）
+        versionCode = 3
+        // CI (GitHub Actions) ではタグ名 (v1.2.0 → 1.2.0) を使う
         versionName = System.getenv("VERSION_NAME") ?: "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
