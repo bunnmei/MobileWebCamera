@@ -17,7 +17,6 @@
   --warn-bg: #fef7e0;
   --warn-border: #f9dc8c;
   --code-bg: #f0f4f9;
-  --gradient: linear-gradient(74deg, #4285f4 0%, #9b72cb 35%, #d96570 70%, #f49c46 100%);
 
   --radius: 16px;
   --radius-sm: 10px;
@@ -148,12 +147,6 @@ main {
   line-height: 1.25;
   font-weight: 500;
   letter-spacing: -0.01em;
-}
-.gradient-text {
-  background: var(--gradient);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
 }
 .hero p { margin: 0; color: var(--muted); font-size: 1.15rem; }
 .hero .actions { margin-top: 24px; }

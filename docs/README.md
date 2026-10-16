@@ -2,6 +2,12 @@
 
 https://bunnmei.github.io/MobileWebCamera/ で公開されるアプリのサイトです（日本語 / 英語）。
 
+ローカルで起動
+
+```
+ python3 -m http.server 8000
+```
+
 ```
 docs/
   .nojekyll        Jekyll を通さず、そのまま公開する
@@ -34,7 +40,7 @@ Google Play Console に入れるプライバシーポリシーの URL：
 
 | クラス | 見た目 |
 |---|---|
-| `.hero` / `.gradient-text` | トップの大きな見出し（グラデーション文字） |
+| `.hero` | トップの大きな見出し |
 | `.summary` | ページ冒頭の要約ボックス |
 | `.callout` / `.callout--warn` | 補足・注意のボックス |
 | `.steps`（`<ol>`） | 丸数字付きの手順。各 `<li>` の最初の `<strong>` が見出しになる |
